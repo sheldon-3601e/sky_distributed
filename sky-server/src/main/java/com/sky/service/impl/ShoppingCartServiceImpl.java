@@ -4,8 +4,8 @@ import com.sky.context.BaseContext;
 import com.sky.dto.ShoppingCartDTO;
 import com.sky.entity.Setmeal;
 import com.sky.entity.ShoppingCart;
-import com.sky.mapper.DishMapper;
-import com.sky.mapper.SetmealMapper;
+//import com.sky.mapper.DishMapper;
+//import com.sky.mapper.SetmealMapper;
 import com.sky.mapper.ShoppingCartMapper;
 import com.sky.service.ShoppingCartService;
 import com.sky.vo.DishVO;
@@ -32,10 +32,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
-    @Autowired
-    private DishMapper dishMapper;
-    @Autowired
-    private SetmealMapper setmealMapper;
+//    @Autowired
+//    private DishMapper dishMapper;
+//    @Autowired
+//    private SetmealMapper setmealMapper;
 
     @Override
     public void addShoppingCart(ShoppingCartDTO shoppingCartDTO) {
@@ -57,7 +57,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             //判断添加的是菜品，还是套餐
             Long dishId = shoppingCart.getDishId();
             Long setmealId = shoppingCart.getSetmealId();
-            if (dishId != null) {
+            /* TODO if (dishId != null) {
                 // 菜品
                 DishVO dish = dishMapper.getDishById(dishId);
                 shoppingCart.setName(dish.getName());
@@ -74,7 +74,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             }
             shoppingCart.setNumber(1);
             shoppingCart.setCreateTime(LocalDateTime.now());
-            shoppingCartMapper.add(shoppingCart);
+            shoppingCartMapper.add(shoppingCart);*/
         }
 
     }

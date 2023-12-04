@@ -19,6 +19,7 @@
         <module>sky-employee</module>
         <module>sky-setmeal</module>
         <module>sky-dish</module>
+        <module>sky-category</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>

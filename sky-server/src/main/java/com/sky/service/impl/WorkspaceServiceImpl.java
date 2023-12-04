@@ -2,9 +2,9 @@ package com.sky.service.impl;
 
 import com.sky.constant.StatusConstant;
 import com.sky.entity.Orders;
-import com.sky.mapper.DishMapper;
+//import com.sky.mapper.DishMapper;
 import com.sky.mapper.OrderMapper;
-import com.sky.mapper.SetmealMapper;
+//import com.sky.mapper.SetmealMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.WorkspaceService;
 import com.sky.vo.BusinessDataVO;
@@ -27,10 +27,10 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     private OrderMapper orderMapper;
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private DishMapper dishMapper;
-    @Autowired
-    private SetmealMapper setmealMapper;
+//    @Autowired
+//    private DishMapper dishMapper;
+//    @Autowired
+//    private SetmealMapper setmealMapper;
 
     /**
      * 根据时间段统计营业数据
@@ -129,7 +129,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
      * @return
      */
     public DishOverViewVO getDishOverView() {
-        Map map = new HashMap();
+        /* TODO Map map = new HashMap();
         map.put("status", StatusConstant.ENABLE);
         Integer sold = dishMapper.countByMap(map);
 
@@ -139,7 +139,8 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         return DishOverViewVO.builder()
                 .sold(sold)
                 .discontinued(discontinued)
-                .build();
+                .build();*/
+    return null;
     }
 
     /**
@@ -148,7 +149,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
      * @return
      */
     public SetmealOverViewVO getSetmealOverView() {
-        Map map = new HashMap();
+        /* TODO Map map = new HashMap();
         map.put("status", StatusConstant.ENABLE);
         Integer sold = setmealMapper.countByMap(map);
 
@@ -158,6 +159,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         return SetmealOverViewVO.builder()
                 .sold(sold)
                 .discontinued(discontinued)
-                .build();
+                .build();*/
+    return null;
     }
 }
