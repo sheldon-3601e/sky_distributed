@@ -1,7 +1,7 @@
 package com.sky.mapper;
 
 import com.github.pagehelper.Page;
-import com.sky.annotation.AutoFill;
+//import com.sky.annotation.AutoFill;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.enumeration.OperationType;
@@ -27,7 +27,7 @@ public interface DishMapper {
      * 加入菜品
      * @param dish
      */
-    @AutoFill(value = OperationType.INSERT)
+//    @AutoFill(value = OperationType.INSERT)
     void insertDish(Dish dish);
 
     /**
@@ -70,7 +70,7 @@ public interface DishMapper {
      * 根据ID动态更改菜品信息
      * @param dish
      */
-    @AutoFill(OperationType.UPDATE)
+//    @AutoFill(OperationType.UPDATE)
     void update(Dish dish);
 
     /**

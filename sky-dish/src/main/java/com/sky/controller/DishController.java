@@ -1,4 +1,4 @@
-package com.sky.controller.admin;
+package com.sky.controller;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;

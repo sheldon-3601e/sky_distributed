@@ -42,8 +42,8 @@ public class SetmealServiceImpl implements SetmealService {
     @Autowired
     private SetmealDishMapper setmealDishMapper;
 
-    @Autowired
-    private DishMapper dishMapper;
+//    @Autowired
+//    private DishMapper dishMapper;
 
     @Override
     public PageResult page(SetmealPageQueryDTO setmealPageQueryDTO) {
