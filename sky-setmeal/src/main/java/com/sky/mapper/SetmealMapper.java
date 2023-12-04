@@ -1,7 +1,7 @@
 package com.sky.mapper;
 
 import com.github.pagehelper.Page;
-import com.sky.annotation.AutoFill;
+//import com.sky.annotation.AutoFill;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
@@ -35,7 +35,7 @@ public interface SetmealMapper {
      * 加入新套餐
      * @param setmeal
      */
-    @AutoFill(OperationType.INSERT)
+//    @AutoFill(OperationType.INSERT)
     void save(Setmeal setmeal);
 
     /**
@@ -56,7 +56,7 @@ public interface SetmealMapper {
      * 修改套餐信息
      * @param setmeal
      */
-    @AutoFill(OperationType.UPDATE)
+//    @AutoFill(OperationType.UPDATE)
     void update(Setmeal setmeal);
 
     /**

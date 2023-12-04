@@ -4,7 +4,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
-import com.sky.controller.admin.SetmealController;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Dish;
@@ -12,7 +11,6 @@ import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.exception.SetmealEnableFailedException;
-import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
@@ -26,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName setmealServiceImpl
@@ -137,15 +136,15 @@ public class SetmealServiceImpl implements SetmealService {
         if (status.equals(StatusConstant.ENABLE)) {
             // 套餐内有停售商品，不能上架
             // 查出菜品ID
-            List<SetmealDish> setmealDishes = setmealDishMapper.getBySetmealId(id);
-            // 查出菜品状态
-            for (SetmealDish setmealDish : setmealDishes) {
-                Dish dish = dishMapper.selectDishById(setmealDish.getDishId());
-                if (dish.getStatus().equals(StatusConstant.DISABLE)) {
-                    // 如果是停售，抛出异常
-                    throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
-                }
-            }
+//            List<SetmealDish> setmealDishes = setmealDishMapper.getBySetmealId(id);
+//            // 查出菜品状态
+//            for (SetmealDish setmealDish : setmealDishes) {
+//                Dish dish = dishMapper.selectDishById(setmealDish.getDishId());
+//                if (dish.getStatus().equals(StatusConstant.DISABLE)) {
+//                    // 如果是停售，抛出异常
+//                    throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
+//                }
+//            }
         }
 
         // 没有异常，正常修改状态

@@ -9,7 +9,7 @@
         <version>2.7.3</version>
     </parent>
     <groupId>com.sky</groupId>
-    <artifactId>sky-take-out</artifactId>
+    <artifactId>sky_distributed</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -17,6 +17,8 @@
         <module>sky-pojo</module>
         <module>sky-server</module>
         <module>sky-employee</module>
+        <module>sky-setmeal</module>
+        <module>sky-dish</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>
