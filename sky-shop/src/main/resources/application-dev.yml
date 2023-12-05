@@ -1,0 +1,30 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 192.168.146.239
+    port: 3306
+    database: sky_take_out
+    username: root
+    password: 123456
+
+  alioss:
+    endpoint: oss-cn-huhehaote.aliyuncs.com
+    access-key-id: LTAI5tKzh7t7secknzvAYbmM
+    access-key-secret: udqJLqSB7wy9MCjT6AKoAp2erTCDtQ
+    bucketName: sheldon-sky-take-out
+
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
+
+  wechat:
+    appid: wx86df833f15df3e80
+    secret: 99bde009c965506141b58a4f7288313b
+
+  shop:
+    address: \xe58c97\xe4baac\xe5b882\xe6b5b7\xe6b780\xe58cba\xe4b88a\xe59cb0\xe58d81\xe8a197\x31\x30\xe58fb7
+  baidu:
+    ak: bUlIGfyEdrIgrimNxQWfaLSIY59KfnHf
+

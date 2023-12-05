@@ -28,7 +28,7 @@ spring:
           uri: lb://sky-workSpace
           predicates:
             - Path=/admin/workspace/**, /admin/common/**
-        - id: server
-          uri: lb://sky-server
+        - id: shop
+          uri: lb://sky-shop
           predicates:
-            - Path=/admin/server/**
+            - Path=/admin/shop/**
