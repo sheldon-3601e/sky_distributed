@@ -1,19 +1,25 @@
 package com.sky.service.impl;
 
+import com.sky.client.DishClient;
+import com.sky.client.SetmealClient;
 import com.sky.constant.StatusConstant;
 import com.sky.entity.Orders;
 //import com.sky.mapper.DishMapper;
+import com.sky.exception.ClientException;
 import com.sky.mapper.OrderMapper;
 //import com.sky.mapper.SetmealMapper;
 import com.sky.mapper.UserMapper;
+import com.sky.result.Result;
 import com.sky.service.WorkspaceService;
 import com.sky.vo.BusinessDataVO;
 import com.sky.vo.DishOverViewVO;
 import com.sky.vo.OrderOverViewVO;
 import com.sky.vo.SetmealOverViewVO;
+import com.sun.xml.internal.bind.v2.TODO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -31,9 +37,14 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 //    private DishMapper dishMapper;
 //    @Autowired
 //    private SetmealMapper setmealMapper;
+    @Autowired
+    private DishClient dishClient;
+    @Autowired
+    private SetmealClient setmealClient;
 
     /**
      * 根据时间段统计营业数据
+     *
      * @param begin
      * @param end
      * @return
@@ -48,8 +59,8 @@ public class WorkspaceServiceImpl implements WorkspaceService {
          */
 
         Map map = new HashMap();
-        map.put("begin",begin);
-        map.put("end",end);
+        map.put("begin", begin);
+        map.put("end", end);
 
         //查询总订单数
         Integer totalOrderCount = orderMapper.countByMap(map);
@@ -57,7 +68,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         map.put("status", Orders.COMPLETED);
         //营业额
         Double turnover = orderMapper.sumByMap(map);
-        turnover = turnover == null? 0.0 : turnover;
+        turnover = turnover == null ? 0.0 : turnover;
 
         //有效订单数
         Integer validOrderCount = orderMapper.countByMap(map);
@@ -65,7 +76,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         Double unitPrice = 0.0;
 
         Double orderCompletionRate = 0.0;
-        if(totalOrderCount != 0 && validOrderCount != 0){
+        if (totalOrderCount != 0 && validOrderCount != 0) {
             //订单完成率
             orderCompletionRate = validOrderCount.doubleValue() / totalOrderCount;
             //平均客单价
@@ -129,18 +140,28 @@ public class WorkspaceServiceImpl implements WorkspaceService {
      * @return
      */
     public DishOverViewVO getDishOverView() {
-        /* TODO Map map = new HashMap();
+
+        Map map = new HashMap();
         map.put("status", StatusConstant.ENABLE);
-        Integer sold = dishMapper.countByMap(map);
+        // Integer sold = dishMapper.countByMap(map);
+        Result<Integer> res = dishClient.countByMap(map);
+        if (res.getCode() != 1) {
+            throw new ClientException(res.getMsg());
+        }
+        Integer sold = res.getData();
 
         map.put("status", StatusConstant.DISABLE);
-        Integer discontinued = dishMapper.countByMap(map);
+        //Integer discontinued = dishMapper.countByMap(map);
+        res = dishClient.countByMap(map);
+        if (res.getCode() != 1) {
+            throw new ClientException(res.getMsg());
+        }
+        Integer discontinued = res.getData();
 
         return DishOverViewVO.builder()
                 .sold(sold)
                 .discontinued(discontinued)
-                .build();*/
-    return null;
+                .build();
     }
 
     /**
@@ -149,17 +170,27 @@ public class WorkspaceServiceImpl implements WorkspaceService {
      * @return
      */
     public SetmealOverViewVO getSetmealOverView() {
-        /* TODO Map map = new HashMap();
+
+        Map map = new HashMap();
         map.put("status", StatusConstant.ENABLE);
-        Integer sold = setmealMapper.countByMap(map);
+        // Integer sold = setmealMapper.countByMap(map);
+        Result<Integer> res = setmealClient.countByMap(map);
+        if (res.getCode() != 1) {
+            throw new ClientException(res.getMsg());
+        }
+        Integer sold = res.getData();
 
         map.put("status", StatusConstant.DISABLE);
-        Integer discontinued = setmealMapper.countByMap(map);
+        // Integer discontinued = setmealMapper.countByMap(map);
+        res = setmealClient.countByMap(map);
+        if (res.getCode() != 1) {
+            throw new ClientException(res.getMsg());
+        }
+        Integer discontinued = res.getData();
 
         return SetmealOverViewVO.builder()
                 .sold(sold)
                 .discontinued(discontinued)
-                .build();*/
-    return null;
+                .build();
     }
 }

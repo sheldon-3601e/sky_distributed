@@ -8,6 +8,7 @@ import com.sky.vo.DishItemVO;
 import com.sky.vo.SetmealVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName setmealService
@@ -84,4 +85,12 @@ public interface SetmealService {
      * @return
      */
     Integer countByDishId(Long id);
+
+    /**
+     * 根据条件统计套餐数量
+     *
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }

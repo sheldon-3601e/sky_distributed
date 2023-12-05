@@ -1,4 +1,4 @@
-package com.sky.controller.admin;
+package com.sky.controller;
 
 import com.sky.result.Result;
 import com.sky.service.WorkspaceService;

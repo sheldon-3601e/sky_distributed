@@ -6,6 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 
 /**
  * @ClassName DishClient
@@ -22,5 +24,8 @@ public interface DishClient {
 
     @GetMapping("/admin/dish/client/selectDishById")
     Result<Dish> selectDishById(@RequestParam("id") Long id);
+
+    @GetMapping("/admin/dish/client/countByMap")
+    Result<Integer> countByMap(@RequestParam Map map);
 
 }

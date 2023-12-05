@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName DishService
@@ -93,4 +94,11 @@ public interface DishService {
      * @return
      */
     Dish selectDishById(Long id);
+
+    /**
+     * 根据条件统计个数
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }

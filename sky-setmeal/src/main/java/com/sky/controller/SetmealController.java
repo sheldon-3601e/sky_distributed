@@ -16,6 +16,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName setmealController
@@ -107,6 +108,15 @@ public class SetmealController {
         log.info("查询菜品是否在套餐中:{}", id);
 
         Integer num = setmealService.countByDishId(id);
+        return Result.success(num);
+    }
+
+    @GetMapping("/client/countByMap")
+    @ApiOperation("根据条件统计套餐数量")
+    public Result<Integer> countByMap(@RequestParam Map map) {
+        log.info("根据条件统计套餐数量:{}", map);
+
+        Integer num = setmealService.countByMap(map);
         return Result.success(num);
     }
 

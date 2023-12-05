@@ -5,6 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 /**
  * @ClassName SetmealClient
  * @Author 26483
@@ -20,5 +22,8 @@ public interface SetmealClient {
 
     @GetMapping("/admin/setmeal/client/countByDishId")
     Result<Integer> countByDishId(@RequestParam("id") Long id);
+
+    @GetMapping("/admin/setmeal/client/countByMap")
+    Result<Integer> countByMap(@RequestParam Map map);
 
 }

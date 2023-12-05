@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -131,6 +132,14 @@ public class DishController {
 
         Dish dish = dishService.selectDishById(id);
         return Result.success(dish);
+    }
+
+    @GetMapping("/client/countByMap")
+    @ApiOperation(("根据条件统计个数"))
+    public Result<Integer> countByMap(@RequestParam Map map) {
+
+        Integer num = dishService.countByMap(map);
+        return Result.success(num);
     }
 
 }

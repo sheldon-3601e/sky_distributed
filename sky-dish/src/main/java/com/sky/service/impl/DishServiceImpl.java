@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName DishServiceImpl
@@ -201,5 +202,10 @@ public class DishServiceImpl implements DishService {
     @Override
     public Dish selectDishById(Long id) {
         return dishMapper.selectDishById(id);
+    }
+
+    @Override
+    public Integer countByMap(Map map) {
+        return dishMapper.countByMap(map);
     }
 }

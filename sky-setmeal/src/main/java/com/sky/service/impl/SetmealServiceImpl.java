@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * @ClassName setmealServiceImpl
@@ -192,5 +192,10 @@ public class SetmealServiceImpl implements SetmealService {
     @Override
     public Integer countByDishId(Long id) {
         return setmealDishMapper.countByDishId(id);
+    }
+
+    @Override
+    public Integer countByMap(Map map) {
+        return setmealMapper.countByMap(map);
     }
 }
