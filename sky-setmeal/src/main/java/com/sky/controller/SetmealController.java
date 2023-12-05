@@ -92,4 +92,13 @@ public class SetmealController {
         return Result.success(pageResult);
     }
 
+    @GetMapping("/client/countByCategoryId")
+    @ApiOperation("根据分类id查询套餐的数量")
+    public Result<Integer> countByCategoryId(@RequestParam Long id) {
+        log.info("根据分类id查询套餐的数量:{}", id);
+
+        Integer num = setmealService.countByCategoryId(id);
+        return Result.success(num);
+    }
+
 }

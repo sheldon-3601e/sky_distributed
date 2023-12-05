@@ -79,4 +79,6 @@ public interface DishService {
      * @param status
      */
     void updateStatus(Long id, int status);
+
+    int countByCategoryId(Long id);
 }

@@ -70,4 +70,11 @@ public interface SetmealService {
      * @return
      */
     List<DishItemVO> getDishItemById(Long id);
+
+    /**
+     * 根据分类id查询套餐的数量
+     * @param id
+     * @return
+     */
+    Integer countByCategoryId(Long id);
 }

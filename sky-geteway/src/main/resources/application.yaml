@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: sky-gateway
+  cloud:
+    nacos:
+      server-addr: 192.168.146.239::8848
+    gateway:
+      routes:
+        - id: category
+          uri: lb://sky-category
+          predicates:
+            - Path=/admin/category/**
+        - id: dish
+          uri: lb://sky-dish
+          predicates:
+            - Path=/admin/dish/**
+        - id: employee
+          uri: lb://sky-employee
+          predicates:
+            - Path=/admin/employee/**
+        - id: setmeal
+          uri: lb://sky-setmeal
+          predicates:
+            - Path=/admin/setmeal/**
+        - id: server
+          uri: lb://sky-server
+          predicates:
+            - Path=/admin/server/**

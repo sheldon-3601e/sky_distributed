@@ -21,6 +21,7 @@
         <module>sky-dish</module>
         <module>sky-category</module>
         <module>sky-geteway</module>
+        <module>sky-api</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>

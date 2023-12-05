@@ -3,6 +3,7 @@ package com.sky.controller;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
+import com.sky.mapper.DishMapper;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
@@ -114,6 +115,14 @@ public class DishController {
     private void clearCache(String patten){
         Set keys = redisTemplate.keys(patten);
         redisTemplate.delete(keys);
+    }
+
+    @GetMapping("/client/countByCategoryId")
+    @ApiOperation(("根据分类id查询菜品数量"))
+    public Result<Integer> countByCategoryId(@RequestParam Long id) {
+
+        int num = dishService.countByCategoryId(id);
+        return Result.success(num);
     }
 
 }
