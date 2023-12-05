@@ -80,5 +80,17 @@ public interface DishService {
      */
     void updateStatus(Long id, int status);
 
+    /**
+     * 根据分类id查询菜品数量
+     * @param id
+     * @return
+     */
     int countByCategoryId(Long id);
+
+    /**
+     * 根据id查询菜品
+     * @param id
+     * @return
+     */
+    Dish selectDishById(Long id);
 }

@@ -197,4 +197,9 @@ public class DishServiceImpl implements DishService {
 
         return dishMapper.countByCategoryId(id);
     }
+
+    @Override
+    public Dish selectDishById(Long id) {
+        return dishMapper.selectDishById(id);
+    }
 }

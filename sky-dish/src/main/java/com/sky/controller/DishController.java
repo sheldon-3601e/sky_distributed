@@ -97,7 +97,7 @@ public class DishController {
     }
 
     @PostMapping("/status/{status}")
-    @ApiOperation(("根据分类ID查询菜品"))
+    @ApiOperation(("修改菜品售卖状态"))
     public Result updateStatus(
             @RequestParam("id") Long id,
             @PathVariable("status") int status) {
@@ -123,6 +123,14 @@ public class DishController {
 
         int num = dishService.countByCategoryId(id);
         return Result.success(num);
+    }
+
+    @GetMapping("/client/selectDishById")
+    @ApiOperation(("根据id查询菜品"))
+    public Result<Dish> selectDishById(@RequestParam Long id) {
+
+        Dish dish = dishService.selectDishById(id);
+        return Result.success(dish);
     }
 
 }

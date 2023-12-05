@@ -2,6 +2,7 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.client.DishClient;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.SetmealDTO;
@@ -9,11 +10,13 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
+import com.sky.exception.ClientException;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.exception.SetmealEnableFailedException;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
+import com.sky.result.Result;
 import com.sky.service.SetmealService;
 import com.sky.vo.DishItemVO;
 import com.sky.vo.SetmealVO;
@@ -38,12 +41,12 @@ public class SetmealServiceImpl implements SetmealService {
 
     @Autowired
     private SetmealMapper setmealMapper;
-
     @Autowired
     private SetmealDishMapper setmealDishMapper;
-
 //    @Autowired
 //    private DishMapper dishMapper;
+    @Autowired
+    private DishClient dishClient;
 
     @Override
     public PageResult page(SetmealPageQueryDTO setmealPageQueryDTO) {
@@ -136,15 +139,20 @@ public class SetmealServiceImpl implements SetmealService {
         if (status.equals(StatusConstant.ENABLE)) {
             // 套餐内有停售商品，不能上架
             // 查出菜品ID
-//            List<SetmealDish> setmealDishes = setmealDishMapper.getBySetmealId(id);
-//            // 查出菜品状态
-//            for (SetmealDish setmealDish : setmealDishes) {
-//                Dish dish = dishMapper.selectDishById(setmealDish.getDishId());
-//                if (dish.getStatus().equals(StatusConstant.DISABLE)) {
-//                    // 如果是停售，抛出异常
-//                    throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
-//                }
-//            }
+            List<SetmealDish> setmealDishes = setmealDishMapper.getBySetmealId(id);
+            // 查出菜品状态
+            for (SetmealDish setmealDish : setmealDishes) {
+                // Dish dish = dishMapper.selectDishById(setmealDish.getDishId());
+                Result<Dish> res = dishClient.selectDishById(setmealDish.getDishId());
+                if (res.getCode() != 1) {
+                    throw new ClientException(res.getMsg());
+                }
+                Dish dish = res.getData();
+                if (dish.getStatus().equals(StatusConstant.DISABLE)) {
+                    // 如果是停售，抛出异常
+                    throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
+                }
+            }
         }
 
         // 没有异常，正常修改状态
