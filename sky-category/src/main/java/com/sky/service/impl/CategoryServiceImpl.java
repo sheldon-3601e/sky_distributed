@@ -78,7 +78,6 @@ public class CategoryServiceImpl implements CategoryService {
      */
     public void deleteById(Long id) {
         //查询当前分类是否关联了菜品，如果关联了就抛出业务异常
-        // TODO
         // Integer count = dishMapper.countByCategoryId(id);
         Result<Integer> res = dishClient.countByCategoryId(id);
         if (res.getCode() != 1) {

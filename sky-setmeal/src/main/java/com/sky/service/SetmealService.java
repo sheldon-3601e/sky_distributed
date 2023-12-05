@@ -77,4 +77,11 @@ public interface SetmealService {
      * @return
      */
     Integer countByCategoryId(Long id);
+
+    /**
+     * 查询菜品是否在套餐中
+     * @param id
+     * @return
+     */
+    Integer countByDishId(Long id);
 }

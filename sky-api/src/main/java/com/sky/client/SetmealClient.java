@@ -18,4 +18,7 @@ public interface SetmealClient {
     @GetMapping("/admin/setmeal/client/countByCategoryId")
     Result<Integer> countByCategoryId(@RequestParam("id") Long id);
 
+    @GetMapping("/admin/setmeal/client/countByDishId")
+    Result<Integer> countByDishId(@RequestParam("id") Long id);
+
 }

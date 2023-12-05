@@ -101,4 +101,13 @@ public class SetmealController {
         return Result.success(num);
     }
 
+    @GetMapping("/client/countByDishId")
+    @ApiOperation("查询菜品是否在套餐中")
+    public Result<Integer> countByDishId(@RequestParam Long id) {
+        log.info("查询菜品是否在套餐中:{}", id);
+
+        Integer num = setmealService.countByDishId(id);
+        return Result.success(num);
+    }
+
 }

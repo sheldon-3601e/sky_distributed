@@ -2,6 +2,7 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.client.SetmealClient;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.DishDTO;
@@ -10,10 +11,12 @@ import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
 import com.sky.entity.SetmealDish;
 import com.sky.enumeration.OperationType;
+import com.sky.exception.ClientException;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.result.PageResult;
+import com.sky.result.Result;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
 import org.springframework.beans.BeanUtils;
@@ -36,12 +39,12 @@ public class DishServiceImpl implements DishService {
 
     @Autowired
     private DishMapper dishMapper;
-
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
-
-//    @Autowired
-//    private SetmealDishMapper setmealDishMapper;
+    // @Autowired
+    // private SetmealDishMapper setmealDishMapper;
+    @Autowired
+    private SetmealClient setmealClient;
 
     @Override
     @Transactional
@@ -90,10 +93,15 @@ public class DishServiceImpl implements DishService {
             }
 
             //如果商品在套餐中，不能删除
-            // TODO Integer count = setmealDishMapper.countByDishId(dishId);
-//            if (count != 0) {
-//                throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
-//            }
+            // Integer count = setmealDishMapper.countByDishId(dishId);
+            Result<Integer> res = setmealClient.countByDishId(dishId);
+            if (res.getCode() != 1) {
+                throw new ClientException(res.getMsg());
+            }
+            Integer count = res.getData();
+            if (count != 0) {
+                throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
+            }
 
             //随着数量增加，SQL语句的数量太多，改为批量删除
             //删除商品

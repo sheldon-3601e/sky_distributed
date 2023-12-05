@@ -180,4 +180,9 @@ public class SetmealServiceImpl implements SetmealService {
 
         return setmealMapper.countByCategoryId(id);
     }
+
+    @Override
+    public Integer countByDishId(Long id) {
+        return setmealDishMapper.countByDishId(id);
+    }
 }
