@@ -35,7 +35,7 @@ public class SetmealController {
     private SetmealService setmealService;
 
     @PostMapping("/status/{status}")
-    @CacheEvict(cacheNames = "setmealCache", allEntries = true)
+    //@CacheEvict(cacheNames = "setmealCache", allEntries = true)
     @ApiOperation("修改店铺状态")
     public Result updateStatus(
             @PathVariable("status") Integer status,

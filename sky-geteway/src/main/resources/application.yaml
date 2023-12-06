@@ -32,3 +32,11 @@ spring:
           uri: lb://sky-shop
           predicates:
             - Path=/admin/shop/**
+sky:
+  jwt:
+    admin-secret-key: itcast
+    admin-ttl: 7200000
+    admin-token-name: token
+  auth:
+    exclude-paths:
+      - /admin/employee/login
