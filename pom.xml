@@ -17,14 +17,10 @@
         <module>sky-pojo</module>
         <module>sky-server</module>
         <module>sky-employee</module>
-        <module>sky-setmeal</module>
-        <module>sky-dish</module>
-        <module>sky-category</module>
+        <module>sky-product</module>
         <module>sky-geteway</module>
         <module>sky-api</module>
         <module>sky-workSpace</module>
-        <module>sky-order</module>
-        <module>sky-shop</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>
